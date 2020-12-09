@@ -29,6 +29,7 @@ import edu.utah.kmm.model.cool.core.datatype.Identifier;
 import edu.utah.kmm.model.cool.core.datatype.IdentifierUse;
 import edu.utah.kmm.model.cool.foundation.datatype.PersonName;
 import edu.utah.kmm.model.cool.foundation.entity.Person;
+import edu.utah.kmm.model.cool.mediator.common.Formatters;
 import edu.utah.kmm.model.cool.util.PersonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -164,15 +165,17 @@ public class PatientHeader extends PluginController {
     }
 
     private String formatDateAndAge(LocalDate date) {
-        return date == null ? null : date + " (" + DateUtil.formatAge(date) + ")";
+        String formatted = Formatters.format(date, null);
+        return formatted == null ? null : formatted + " (" + DateUtil.formatAge(date) + ")";
     }
 
     private void setLabel(
             Label label,
             Object value,
             BaseUIComponent associatedComponent) {
-        label.setLabel(value == null ? null : value.toString());
-        label.setVisible(value != null);
+        String formatted = Formatters.format(value, null);
+        label.setLabel(formatted);
+        label.setVisible(formatted != null);
 
         if (associatedComponent != null) {
             associatedComponent.setVisible(label.isVisible());

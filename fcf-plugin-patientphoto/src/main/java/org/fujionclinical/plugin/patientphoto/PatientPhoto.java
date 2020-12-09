@@ -25,10 +25,8 @@
  */
 package org.fujionclinical.plugin.patientphoto;
 
-import edu.utah.kmm.model.cool.core.datatype.Attachment;
 import edu.utah.kmm.model.cool.foundation.entity.Person;
 import edu.utah.kmm.model.cool.util.PersonUtils;
-import org.fujion.ancillary.MimeContent;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.component.BaseComponent;
 import org.fujion.component.Image;
@@ -36,7 +34,7 @@ import org.fujion.component.Label;
 import org.fujion.component.Popup;
 import org.fujionclinical.api.context.ISurveyResponse;
 import org.fujionclinical.api.model.patient.PatientContext;
-import org.fujionclinical.patientselection.common.Constants;
+import org.fujionclinical.personphoto.PersonPhoto;
 import org.fujionclinical.ui.controller.FrameworkController;
 
 /**
@@ -45,7 +43,7 @@ import org.fujionclinical.ui.controller.FrameworkController;
 public class PatientPhoto extends FrameworkController implements PatientContext.IPatientContextSubscriber {
 
     @WiredComponent
-    private Image imgPhoto;
+    private PersonPhoto imgPhoto;
 
     @WiredComponent("popup.imgFullPhoto")
     private Image imgFullPhoto;
@@ -69,27 +67,15 @@ public class PatientPhoto extends FrameworkController implements PatientContext.
     @Override
     public void committed() {
         Person patient = PatientContext.getActivePatient();
-        Attachment photo = null;  // TODO: patient == null || patient.getPhoto() == null ? null : patient.getPhoto();
-        MimeContent content = null; // TODO: photo == null ? null : photo.getContent();
+        imgPhoto.setPopup(null);
+        imgPhoto.setPerson(patient);
+        imgFullPhoto.setSrc(imgPhoto.getSrc());
+        lblCaption.setLabel(PersonUtils.getFullName(patient));
 
-        if (patient == null) {
-            imgPhoto.setSrc(Constants.IMAGE_NOPATIENT);
-            imgPhoto.setPopup(null);
-            imgPhoto.setHint(Constants.MSG_NO_PATIENT.toString());
-            imgFullPhoto.setContent(null);
-        } else if (content == null) {
-            imgPhoto.setSrc(Constants.IMAGE_SILHOUETTE);
-            imgPhoto.setPopup(null);
-            imgPhoto.setHint(Constants.MSG_NO_PHOTO.toString());
-            imgFullPhoto.setContent(null);
-        } else {
-            imgPhoto.setContent(content);
+        if (imgPhoto.hasPhoto()) {
             imgPhoto.setHint(null);
             imgPhoto.setPopup(popup);
-            imgFullPhoto.setContent(content);
-            lblCaption.setLabel(PersonUtils.getFullName(patient));
         }
-
     }
 
     @Override

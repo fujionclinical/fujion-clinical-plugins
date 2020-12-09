@@ -63,7 +63,7 @@ public class DocumentListRenderer implements IComponentRenderer<Row, Document> {
         addCell(row, "");
         addCell(row, doc.getRecordedDate());
         addCell(row, doc.getDescription());
-        addCell(row, null); //TODO: doc.hasEncounter() ? doc.getEncounter().getLocation() : null);
+        addCell(row, doc.hasEncounter() ? doc.getEncounter().getLocation() : null);
         addCell(row, doc.getRecorder());
         return row;
     }

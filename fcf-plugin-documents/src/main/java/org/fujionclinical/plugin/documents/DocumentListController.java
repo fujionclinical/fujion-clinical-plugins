@@ -26,6 +26,7 @@
 package org.fujionclinical.plugin.documents;
 
 import edu.utah.kmm.model.cool.clinical.finding.Document;
+import edu.utah.kmm.model.cool.mediator.datasource.DataSources;
 import edu.utah.kmm.model.cool.mediator.query.QueryContext;
 import edu.utah.kmm.model.cool.terminology.ConceptReference;
 import org.fujion.annotation.EventHandler;
@@ -96,8 +97,9 @@ public class DocumentListController extends AbstractGridController<Document, Doc
 
     private final Collection<String> allTypes;
 
-    public DocumentListController() {
-        super(new DAOQueryService<>(Document.class, DOCUMENT_QUERY), "fcfdocuments", "DOCUMENT", "documentsPrint.css", "patient");
+    public DocumentListController(String dataSourceId) {
+        super(new DAOQueryService<>(DataSources.get(dataSourceId), Document.class, DOCUMENT_QUERY),
+                "fcfdocuments", "DOCUMENT", "documentsPrint.css", "patient");
         registerQueryFilter(new DocumentTypeFilter());
         allTypes = Collections.emptyList(); //service.getTypes();
     }

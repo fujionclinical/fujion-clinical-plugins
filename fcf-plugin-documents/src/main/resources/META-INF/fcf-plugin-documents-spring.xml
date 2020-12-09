@@ -44,7 +44,9 @@
 
 		<bean id="fcfDocumentsListController"
 			  class="org.fujionclinical.plugin.documents.DocumentListController"
-			  scope="prototype" />
+			  scope="prototype">
+			<constructor-arg value="${org.fujionclinical.cool.datasource}" />
+		</bean>
 
 		<bean id="fcfDocumentsDisplayController"
 			  class="org.fujionclinical.plugin.documents.DocumentDisplayController"

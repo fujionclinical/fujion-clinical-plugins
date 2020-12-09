@@ -1,7 +1,7 @@
 <span controller="${@fcfPatientPhotoController}">
 	<style src="web/org/fujionclinical/plugin/patientphoto/patientPhoto.css?" />
 
-	<image name="imgPhoto" height="100%" width="100%" />
+	<image name="imgPhoto" height="100%" width="100%" impl="org.fujionclinical.personphoto.PersonPhoto"/>
 	
 	<popup name="popup">
 		<div class="fcf-patientphoto-popup fujion-layout-vertical">
