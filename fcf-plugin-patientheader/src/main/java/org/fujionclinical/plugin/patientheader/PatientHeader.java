@@ -27,9 +27,12 @@ package org.fujionclinical.plugin.patientheader;
 
 import edu.utah.kmm.model.cool.core.datatype.Identifier;
 import edu.utah.kmm.model.cool.core.datatype.IdentifierUse;
+import edu.utah.kmm.model.cool.foundation.datatype.Address;
+import edu.utah.kmm.model.cool.foundation.datatype.ContactPoint;
 import edu.utah.kmm.model.cool.foundation.datatype.PersonName;
 import edu.utah.kmm.model.cool.foundation.entity.Person;
 import edu.utah.kmm.model.cool.mediator.common.Formatters;
+import edu.utah.kmm.model.cool.terminology.ConceptReferenceSet;
 import edu.utah.kmm.model.cool.util.PersonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -37,6 +40,7 @@ import org.apache.commons.logging.LogFactory;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.common.DateUtil;
+import org.fujion.common.StrUtil;
 import org.fujion.component.*;
 import org.fujionclinical.api.event.IEventSubscriber;
 import org.fujionclinical.api.model.patient.PatientContext;
@@ -47,6 +51,9 @@ import org.fujionclinical.shell.elements.ElementPlugin;
 import org.fujionclinical.shell.plugins.PluginController;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Controller for patient header plugin.
@@ -243,52 +250,50 @@ public class PatientHeader extends PluginController {
 
         header = null;
 
-        /* TODO:
-        for (Patient.Communication comm : patient.getCommunication()) {
+        for (ConceptReferenceSet language : patient.getLanguage()) {
+            String languageStr = Formatters.formatConceptReferenceSet(language);
+
             if (header == null) {
                 header = addHeader("Communication");
+                languageStr += " (preferred)";
             }
 
-            String language = FhirUtil.getDisplayValueForType(comm.getLanguage());
-
-            if (comm.getPreferred()) {
-                language += " (preferred)";
-            }
-
-            addDetail(header, language, null);
+            addDetail(header, languageStr, null);
         }
+
         // Telecom info
 
         header = null;
 
-        List<ContactPointDt> telecoms = new ArrayList<>(patient.getTelecom());
-        Collections.sort(telecoms, (cp1, cp2) -> cp1.getRank() - cp2.getRank());
+        List<ContactPoint> contactPoints = new ArrayList<>(patient.getContact());
+        contactPoints.sort(Comparator.comparingInt(ContactPoint::getRank));
 
-        for (ContactPointDt telecom : telecoms) {
+        for (ContactPoint contactPoint : contactPoints) {
             if (header == null) {
                 header = addHeader("Contact Details");
             }
 
-            String type = !telecom.getSystemElement().isEmpty() ? telecom.getSystem() : "";
-            String use = telecom.getUseElement().isEmpty() ? telecom.getUse() : "";
+            String type = contactPoint.hasSystem() ? contactPoint.getSystem().getDisplayName() : "";
+            String use = contactPoint.hasUse() ? contactPoint.getUse().getDisplayName() : "";
 
             if (!StringUtils.isEmpty(use)) {
                 type += " (" + use + ")";
             }
 
-            addDetail(header, telecom.getValue(), type);
+            addDetail(header, contactPoint.getValue(), type);
         }
 
         // Address(es)
+
         header = null;
 
-        for (AddressDt address : patient.getAddress()) {
+        for (Address address : patient.getAddress()) {
             if (header == null) {
                 header = addHeader("Addresses");
             }
 
-            String type = !address.getTypeElement().isEmpty() ? address.getType() : "";
-            String use = !address.getUseElement().isEmpty() ? address.getUse() : "";
+            String type = address.hasType() ? address.getType().getDisplayName() : "";
+            String use = address.hasUse() ? address.getUse().getDisplayName() : "";
 
             if (!StringUtils.isEmpty(type)) {
                 use += " (" + type + ")";
@@ -296,8 +301,8 @@ public class PatientHeader extends PluginController {
 
             addDetail(header, " ", use);
 
-            for (StringDt line : address.getLine()) {
-                addDetail(header, line.getValue(), null);
+            for (String line : address.getLine()) {
+                addDetail(header, line, null);
             }
 
             StringBuilder line = new StringBuilder();
@@ -310,7 +315,7 @@ public class PatientHeader extends PluginController {
         if (pnlDetail.getFirstChild() == null) {
             addHeader(StrUtil.getLabel("fcfpatientheader.nodetail.label"));
         }
-        */
+
         return true;
     }
 

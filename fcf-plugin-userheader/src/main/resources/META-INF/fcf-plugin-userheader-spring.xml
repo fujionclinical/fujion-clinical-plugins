@@ -22,7 +22,7 @@
 	<beans profile="child">
 
 		<bean id="fcfUserHeaderController" scope="prototype"
-			class="org.fujionclinical.plugin.userheader.MainController" />
+			class="org.fujionclinical.plugin.userheader.UserHeader" />
 
 	</beans>
 

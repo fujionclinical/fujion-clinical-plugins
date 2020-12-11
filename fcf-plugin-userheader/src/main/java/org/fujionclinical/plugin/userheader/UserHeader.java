@@ -42,9 +42,9 @@ import org.fujionclinical.shell.plugins.PluginController;
 /**
  * Controller for user header plugin.
  */
-public class MainController extends PluginController {
+public class UserHeader extends PluginController {
 
-    private static final Log log = LogFactory.getLog(MainController.class);
+    private static final Log log = LogFactory.getLog(UserHeader.class);
 
     @WiredComponent
     private Label userHeader;
