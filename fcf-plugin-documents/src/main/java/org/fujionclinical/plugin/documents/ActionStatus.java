@@ -27,7 +27,7 @@ package org.fujionclinical.plugin.documents;
 
 import org.fujionclinical.api.context.IContextSubscriber;
 import org.fujionclinical.api.context.ISurveyResponse;
-import org.fujionclinical.api.model.patient.PatientContext;
+import org.fujionclinical.api.cool.patient.PatientContext;
 import org.fujionclinical.shell.plugins.PluginStatus;
 
 /**

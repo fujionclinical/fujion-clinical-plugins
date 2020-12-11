@@ -33,7 +33,7 @@ import org.fujion.component.Image;
 import org.fujion.component.Label;
 import org.fujion.component.Popup;
 import org.fujionclinical.api.context.ISurveyResponse;
-import org.fujionclinical.api.model.patient.PatientContext;
+import org.fujionclinical.api.cool.patient.PatientContext;
 import org.fujionclinical.personphoto.PersonPhoto;
 import org.fujionclinical.ui.controller.FrameworkController;
 

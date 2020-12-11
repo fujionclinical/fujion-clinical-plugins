@@ -29,8 +29,8 @@ import edu.utah.kmm.model.cool.clinical.encounter.Encounter;
 import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
 import org.fujion.component.*;
 import org.fujion.event.DblclickEvent;
+import org.fujionclinical.api.cool.encounter.EncounterContext;
 import org.fujionclinical.api.event.IEventSubscriber;
-import org.fujionclinical.api.model.encounter.EncounterContext;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 import org.fujionclinical.shell.elements.ElementPlugin;
 
