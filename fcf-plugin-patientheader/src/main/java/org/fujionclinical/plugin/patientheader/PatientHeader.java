@@ -197,9 +197,9 @@ public class PatientHeader extends PluginController {
         }
     }
 
-    private boolean buildDetail() {
+    private void buildDetail() {
         if (!needsDetail) {
-            return false;
+            return;
         }
 
         needsDetail = false;
@@ -315,8 +315,6 @@ public class PatientHeader extends PluginController {
         if (pnlDetail.getFirstChild() == null) {
             addHeader(StrUtil.getLabel("fcfpatientheader.nodetail.label"));
         }
-
-        return true;
     }
 
     private Pane addHeader(String text) {
