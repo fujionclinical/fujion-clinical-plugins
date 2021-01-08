@@ -26,7 +26,6 @@
 package org.fujionclinical.plugin.patientheader;
 
 import edu.utah.kmm.model.cool.core.datatype.Identifier;
-import edu.utah.kmm.model.cool.core.datatype.IdentifierUse;
 import edu.utah.kmm.model.cool.foundation.datatype.Address;
 import edu.utah.kmm.model.cool.foundation.datatype.ContactPoint;
 import edu.utah.kmm.model.cool.foundation.datatype.PersonName;
@@ -40,6 +39,7 @@ import org.apache.commons.logging.LogFactory;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.common.DateUtil;
+import org.fujion.common.MiscUtil;
 import org.fujion.common.StrUtil;
 import org.fujion.component.*;
 import org.fujionclinical.api.cool.patient.PatientContext;
@@ -233,8 +233,7 @@ public class PatientHeader extends PluginController {
                     header = addHeader("Identifiers");
                 }
 
-                IdentifierUse categoryId = id.getUse();
-                String category = categoryId == null ? null : categoryId.name().toLowerCase();
+                String category = MiscUtil.asNull(() -> id.getUse().getPreferredName().toLowerCase());
                 String system = StringUtils.defaultString(id.getSystem().toString());
                 String value = StringUtils.defaultString(id.getId());
 
@@ -273,8 +272,8 @@ public class PatientHeader extends PluginController {
                 header = addHeader("Contact Details");
             }
 
-            String type = contactPoint.hasSystem() ? contactPoint.getSystem().getDisplayName() : "";
-            String use = contactPoint.hasUse() ? contactPoint.getUse().getDisplayName() : "";
+            String type = MiscUtil.withDefault("", () -> contactPoint.getSystem().getPreferredName());
+            String use = MiscUtil.asNull(() -> contactPoint.getUse().getPreferredName());
 
             if (!StringUtils.isEmpty(use)) {
                 type += " (" + use + ")";
@@ -292,8 +291,8 @@ public class PatientHeader extends PluginController {
                 header = addHeader("Addresses");
             }
 
-            String type = address.hasType() ? address.getType().getDisplayName() : "";
-            String use = address.hasUse() ? address.getUse().getDisplayName() : "";
+            String type = MiscUtil.withDefault("", () -> address.getType().getPreferredName());
+            String use = MiscUtil.asNull(() -> address.getUse().getPreferredName());
 
             if (!StringUtils.isEmpty(type)) {
                 use += " (" + type + ")";
