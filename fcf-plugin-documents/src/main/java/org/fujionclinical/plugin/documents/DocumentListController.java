@@ -28,6 +28,9 @@ package org.fujionclinical.plugin.documents;
 import edu.utah.kmm.model.cool.clinical.finding.Document;
 import edu.utah.kmm.model.cool.mediator.datasource.DataSources;
 import edu.utah.kmm.model.cool.mediator.query.QueryContext;
+import edu.utah.kmm.model.cool.mediator.query.filter.AbstractQueryFilter;
+import edu.utah.kmm.model.cool.mediator.query.filter.DateQueryFilter;
+import edu.utah.kmm.model.cool.mediator.query.service.DAOQueryService;
 import edu.utah.kmm.model.cool.terminology.ConceptReference;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
@@ -36,9 +39,7 @@ import org.fujion.component.*;
 import org.fujion.event.Event;
 import org.fujion.event.EventUtil;
 import org.fujion.model.IListModel;
-import org.fujionclinical.api.query.filter.AbstractQueryFilter;
-import org.fujionclinical.api.query.filter.DateQueryFilter.DateType;
-import org.fujionclinical.api.query.service.DAOQueryService;
+import org.fujion.thread.ThreadUtil;
 import org.fujionclinical.sharedforms.controller.AbstractGridController;
 
 import java.time.LocalDateTime;
@@ -98,7 +99,7 @@ public class DocumentListController extends AbstractGridController<Document, Doc
     private final Collection<String> allTypes;
 
     public DocumentListController(String dataSourceId) {
-        super(new DAOQueryService<>(DataSources.get(dataSourceId), Document.class, DOCUMENT_QUERY),
+        super(new DAOQueryService<>(ThreadUtil.getApplicationThreadPool(), DataSources.get(dataSourceId), Document.class, DOCUMENT_QUERY),
                 "fcfdocuments", "DOCUMENT", "documentsPrint.css", "patient");
         registerQueryFilter(new DocumentTypeFilter());
         allTypes = Collections.emptyList(); //service.getTypes();
@@ -307,7 +308,9 @@ public class DocumentListController extends AbstractGridController<Document, Doc
     }
 
     @Override
-    public LocalDateTime getDateByType(Document result, DateType dateMode) {
+    public LocalDateTime getDateByType(
+            Document result,
+            DateQueryFilter.DateType dateMode) {
         return result.getRecordedDate();
     }
 

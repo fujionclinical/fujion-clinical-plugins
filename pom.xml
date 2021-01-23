@@ -30,6 +30,12 @@
 		<module>fcf-plugin-encounters</module>
 		<module>fcf-plugin-conditions</module>
 		<module>fcf-plugin-documents</module>
+		<module>fcf-plugin-adversereactions</module>
+		<module>fcf-plugin-diagnosticreports</module>
+		<module>fcf-plugin-familyhistory</module>
+		<module>fcf-plugin-servicerequests</module>
+		<module>fcf-plugin-medicationrequests</module>
+		<module>fcf-plugin-orders</module>
 	</modules>
 	
 	<dependencies>

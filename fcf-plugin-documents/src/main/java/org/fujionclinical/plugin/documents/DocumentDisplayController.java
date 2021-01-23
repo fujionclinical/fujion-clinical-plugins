@@ -27,6 +27,8 @@ package org.fujionclinical.plugin.documents;
 
 import edu.utah.kmm.model.cool.clinical.finding.Document;
 import edu.utah.kmm.model.cool.mediator.query.QueryContext;
+import edu.utah.kmm.model.cool.mediator.query.filter.DateQueryFilter;
+import edu.utah.kmm.model.cool.mediator.query.service.InMemoryQueryService;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.component.Combobox;
@@ -34,8 +36,6 @@ import org.fujion.component.Label;
 import org.fujion.component.Row;
 import org.fujion.event.EventUtil;
 import org.fujion.model.IListModel;
-import org.fujionclinical.api.query.filter.DateQueryFilter;
-import org.fujionclinical.api.query.service.InMemoryQueryService;
 import org.fujionclinical.sharedforms.controller.AbstractGridController;
 
 import java.time.LocalDateTime;
