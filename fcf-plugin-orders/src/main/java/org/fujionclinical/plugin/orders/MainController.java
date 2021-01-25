@@ -33,7 +33,6 @@ import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
 import edu.utah.kmm.model.cool.mediator.query.QueryContext;
 import edu.utah.kmm.model.cool.mediator.query.QueryContextImpl;
 import edu.utah.kmm.model.cool.mediator.query.service.DAOQueryService;
-import org.fujion.thread.ThreadUtil;
 import org.fujionclinical.sharedforms.controller.AbstractResourceListView;
 
 import java.util.ArrayList;
@@ -54,8 +53,8 @@ public class MainController extends AbstractResourceListView<Identifiable, Ident
 
     @Override
     protected void setup() {
-        queryServiceRequest = new DAOQueryService<>(ThreadUtil.getApplicationThreadPool(), getDataSource(), ServiceRequest.class, QUERY);
-        queryMedicationRequest = new DAOQueryService<>(ThreadUtil.getApplicationThreadPool(), getDataSource(), MedicationRequest.class, QUERY);
+        queryServiceRequest = new DAOQueryService<>(getDataSource(), ServiceRequest.class, QUERY);
+        queryMedicationRequest = new DAOQueryService<>(getDataSource(), MedicationRequest.class, QUERY);
         setup(Identifiable.class, "Orders", "Order Detail", "", 1, "Type", "Date", "Order", "Notes");
     }
 
@@ -108,8 +107,8 @@ public class MainController extends AbstractResourceListView<Identifiable, Ident
     private List<Identifiable> fetchData() {
         List<Identifiable> results = new ArrayList<>();
         queryContext.setParam("patient", getPatient() == null ? null : getPatient().getDefaultId().getId());
-        results.addAll(queryServiceRequest.fetch(queryContext).getResults());
-        results.addAll(queryMedicationRequest.fetch(queryContext).getResults());
+        results.addAll(queryServiceRequest.fetch(queryContext).get());
+        results.addAll(queryMedicationRequest.fetch(queryContext).get());
         return results;
     }
 

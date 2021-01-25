@@ -39,7 +39,6 @@ import org.fujion.component.*;
 import org.fujion.event.Event;
 import org.fujion.event.EventUtil;
 import org.fujion.model.IListModel;
-import org.fujion.thread.ThreadUtil;
 import org.fujionclinical.sharedforms.controller.AbstractGridController;
 
 import java.time.LocalDateTime;
@@ -99,7 +98,7 @@ public class DocumentListController extends AbstractGridController<Document, Doc
     private final Collection<String> allTypes;
 
     public DocumentListController(String dataSourceId) {
-        super(new DAOQueryService<>(ThreadUtil.getApplicationThreadPool(), DataSources.get(dataSourceId), Document.class, DOCUMENT_QUERY),
+        super(new DAOQueryService<>(DataSources.get(dataSourceId), Document.class, DOCUMENT_QUERY),
                 "fcfdocuments", "DOCUMENT", "documentsPrint.css", "patient");
         registerQueryFilter(new DocumentTypeFilter());
         allTypes = Collections.emptyList(); //service.getTypes();
