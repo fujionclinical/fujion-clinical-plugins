@@ -26,11 +26,11 @@
 package org.fujionclinical.plugin.documents;
 
 import edu.utah.kmm.model.cool.clinical.finding.Document;
+import edu.utah.kmm.model.cool.mediator.dao.DAOQueryService;
 import edu.utah.kmm.model.cool.mediator.datasource.DataSources;
 import edu.utah.kmm.model.cool.mediator.query.QueryContext;
 import edu.utah.kmm.model.cool.mediator.query.filter.AbstractQueryFilter;
 import edu.utah.kmm.model.cool.mediator.query.filter.DateQueryFilter;
-import edu.utah.kmm.model.cool.mediator.query.service.DAOQueryService;
 import edu.utah.kmm.model.cool.terminology.ConceptReference;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;

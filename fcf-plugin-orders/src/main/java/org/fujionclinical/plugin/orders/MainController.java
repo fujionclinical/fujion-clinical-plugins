@@ -29,10 +29,10 @@ import edu.utah.kmm.model.cool.clinical.action.MedicationRequest;
 import edu.utah.kmm.model.cool.clinical.action.ServiceRequest;
 import edu.utah.kmm.model.cool.clinical.action.SimpleMedicationRequest;
 import edu.utah.kmm.model.cool.foundation.core.Identifiable;
+import edu.utah.kmm.model.cool.mediator.dao.DAOQueryService;
 import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
 import edu.utah.kmm.model.cool.mediator.query.QueryContext;
 import edu.utah.kmm.model.cool.mediator.query.QueryContextImpl;
-import edu.utah.kmm.model.cool.mediator.query.service.DAOQueryService;
 import org.fujionclinical.sharedforms.controller.AbstractResourceListView;
 
 import java.util.ArrayList;

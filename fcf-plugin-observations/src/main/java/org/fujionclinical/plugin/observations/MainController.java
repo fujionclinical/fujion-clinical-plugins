@@ -26,6 +26,7 @@
 package org.fujionclinical.plugin.observations;
 
 import edu.utah.kmm.model.cool.clinical.finding.ComposableObservation;
+import edu.utah.kmm.model.cool.clinical.finding.Observation;
 import edu.utah.kmm.model.cool.common.MiscUtils;
 import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
@@ -35,17 +36,17 @@ import java.util.List;
 /**
  * Controller for patient observations display.
  */
-public class MainController extends ResourceListView<ComposableObservation<?>, ComposableObservation<?>, DataSource> {
+public class MainController extends ResourceListView<Observation<?>, Observation<?>, DataSource> {
 
     @Override
     protected void setup() {
-        setup(MiscUtils.cast(ComposableObservation.class), "Observations", "Observation Detail", "subject={{patient}}", 1, "", "Date",
+        setup(MiscUtils.cast(Observation.class), "Observations", "Observation Detail", "subject={{patient}}", 1, "", "Date",
                 "Status", "Result", "Ref Range");
-     }
+    }
 
     @Override
     protected void populate(
-            ComposableObservation<?> observation,
+            Observation<?> observation,
             List<Object> columns) {
         columns.add(observation.getCode());
         columns.add(observation.getEffective());
@@ -55,8 +56,18 @@ public class MainController extends ResourceListView<ComposableObservation<?>, C
     }
 
     @Override
-    protected void initModel(List<ComposableObservation<?>> entries) {
-        model.addAll(entries);
+    protected void initModel(List<Observation<?>> entries) {
+        addObservations(entries);
+    }
+
+    private void addObservations(List<Observation<?>> src) {
+        for (Observation<?> observation : src) {
+            model.add(observation);
+
+            if (observation instanceof ComposableObservation) {
+                addObservations(((ComposableObservation<?>) observation).getEntries());
+            }
+        }
     }
 
 }
