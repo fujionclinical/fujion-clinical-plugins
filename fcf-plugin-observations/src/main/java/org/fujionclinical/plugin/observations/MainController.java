@@ -25,9 +25,10 @@
  */
 package org.fujionclinical.plugin.observations;
 
+import edu.utah.kmm.model.cool.clinical.finding.BloodPressure;
 import edu.utah.kmm.model.cool.clinical.finding.ComposableObservation;
-import edu.utah.kmm.model.cool.clinical.finding.Observation;
-import edu.utah.kmm.model.cool.common.MiscUtils;
+import edu.utah.kmm.model.cool.clinical.finding.ObservationalFinding;
+import edu.utah.kmm.model.cool.clinical.finding.SimpleObservation;
 import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
@@ -36,17 +37,17 @@ import java.util.List;
 /**
  * Controller for patient observations display.
  */
-public class MainController extends ResourceListView<Observation<?>, Observation<?>, DataSource> {
+public class MainController extends ResourceListView<ObservationalFinding, SimpleObservation<?>, DataSource> {
 
     @Override
     protected void setup() {
-        setup(MiscUtils.cast(Observation.class), "Observations", "Observation Detail", "subject={{patient}}", 1, "", "Date",
+        setup(ObservationalFinding.class, "Observations", "Observation Detail", "subject={{patient}}", 1, "", "Date",
                 "Status", "Result", "Ref Range");
     }
 
     @Override
     protected void populate(
-            Observation<?> observation,
+            SimpleObservation<?> observation,
             List<Object> columns) {
         columns.add(observation.getCode());
         columns.add(observation.getEffective());
@@ -56,16 +57,22 @@ public class MainController extends ResourceListView<Observation<?>, Observation
     }
 
     @Override
-    protected void initModel(List<Observation<?>> entries) {
+    protected void initModel(List<ObservationalFinding> entries) {
         addObservations(entries);
     }
 
-    private void addObservations(List<Observation<?>> src) {
-        for (Observation<?> observation : src) {
-            model.add(observation);
-
+    private void addObservations(List<? extends ObservationalFinding> src) {
+        for (ObservationalFinding observation : src) {
             if (observation instanceof ComposableObservation) {
-                addObservations(((ComposableObservation<?>) observation).getEntries());
+                ComposableObservation<?> obs = (ComposableObservation<?>) observation;
+                model.add(obs);
+                addObservations(obs.getEntries());
+            } else if (observation instanceof BloodPressure) {
+                BloodPressure obs = (BloodPressure) observation;
+                model.add(obs.getSystolic());
+                model.add(obs.getDiastolic());
+            } else if (observation instanceof SimpleObservation) {
+                model.add((SimpleObservation<?>) observation);
             }
         }
     }
