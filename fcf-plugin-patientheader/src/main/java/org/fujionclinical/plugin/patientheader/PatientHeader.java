@@ -32,6 +32,7 @@ import edu.utah.kmm.model.cool.foundation.datatype.PersonName;
 import edu.utah.kmm.model.cool.foundation.entity.Person;
 import edu.utah.kmm.model.cool.mediator.common.Formatters;
 import edu.utah.kmm.model.cool.util.PersonUtils;
+import edu.utah.kmm.terminology.api.model.ConceptReferenceSet;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -48,7 +49,6 @@ import org.fujionclinical.api.user.User;
 import org.fujionclinical.patientselection.common.PatientSelection;
 import org.fujionclinical.shell.elements.ElementPlugin;
 import org.fujionclinical.shell.plugins.PluginController;
-import org.opencds.tools.terminology.api.model.ConceptReferenceSet;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

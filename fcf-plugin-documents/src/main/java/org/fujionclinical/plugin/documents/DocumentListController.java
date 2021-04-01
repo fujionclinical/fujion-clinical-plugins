@@ -31,6 +31,7 @@ import edu.utah.kmm.model.cool.mediator.datasource.DataSources;
 import edu.utah.kmm.model.cool.mediator.query.QueryContext;
 import edu.utah.kmm.model.cool.mediator.query.filter.AbstractQueryFilter;
 import edu.utah.kmm.model.cool.mediator.query.filter.DateQueryFilter;
+import edu.utah.kmm.terminology.api.model.ConceptReference;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.common.StrUtil;
@@ -39,7 +40,6 @@ import org.fujion.event.Event;
 import org.fujion.event.EventUtil;
 import org.fujion.model.IListModel;
 import org.fujionclinical.sharedforms.controller.AbstractGridController;
-import org.opencds.tools.terminology.api.model.ConceptReference;
 
 import java.time.LocalDateTime;
 import java.util.*;
