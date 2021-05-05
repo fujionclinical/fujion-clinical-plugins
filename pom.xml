@@ -12,30 +12,31 @@
 	<name>FCF Parent POM for Plugins</name>
 	
 	<modules>
+		<module>fcf-plugin-adversereactions</module>
 		<module>fcf-plugin-chat</module>
-		<module>fcf-plugin-sandbox</module>
+		<module>fcf-plugin-conditions</module>
 		<module>fcf-plugin-currentdatetime</module>
-		<module>fcf-plugin-infopanel</module>
-		<module>fcf-plugin-statuspanel</module>
+		<module>fcf-plugin-diagnosticreports</module>
+		<module>fcf-plugin-documents</module>
+		<module>fcf-plugin-encounters</module>
 		<module>fcf-plugin-eventtesting</module>
-		<module>fcf-plugin-messagetesting</module>
+		<module>fcf-plugin-familyhistory</module>
 		<module>fcf-plugin-filetailer</module>
+		<module>fcf-plugin-flowsheet</module>
+		<module>fcf-plugin-infopanel</module>
+		<module>fcf-plugin-medicationrequests</module>
+		<module>fcf-plugin-messagetesting</module>
 		<module>fcf-plugin-mockup</module>
+		<module>fcf-plugin-observations</module>
+		<module>fcf-plugin-orders</module>
+		<module>fcf-plugin-patientheader</module>
+		<module>fcf-plugin-patientphoto</module>
+		<module>fcf-plugin-sandbox</module>
+		<module>fcf-plugin-servicerequests</module>
 		<module>fcf-plugin-sessiontracker</module>
 		<module>fcf-plugin-settings</module>
-		<module>fcf-plugin-observations</module>
-		<module>fcf-plugin-patientphoto</module>
-		<module>fcf-plugin-patientheader</module>
+		<module>fcf-plugin-statuspanel</module>
 		<module>fcf-plugin-userheader</module>
-		<module>fcf-plugin-encounters</module>
-		<module>fcf-plugin-conditions</module>
-		<module>fcf-plugin-documents</module>
-		<module>fcf-plugin-adversereactions</module>
-		<module>fcf-plugin-diagnosticreports</module>
-		<module>fcf-plugin-familyhistory</module>
-		<module>fcf-plugin-servicerequests</module>
-		<module>fcf-plugin-medicationrequests</module>
-		<module>fcf-plugin-orders</module>
 	</modules>
 	
 	<dependencies>

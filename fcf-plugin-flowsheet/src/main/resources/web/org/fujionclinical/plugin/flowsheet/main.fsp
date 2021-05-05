@@ -1,0 +1,13 @@
+<fsp xmlns="http://www.fujion.org/schema/fsp"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
+        http://www.fujion.org/schema/fsp
+        http://www.fujion.org/schema/fsp.xsd">
+
+    <div controller="${@fcfFlowsheetController}">
+        <grid>
+            <columns name="columns"/>
+            <rows name="rows"/>
+        </grid>
+    </div>
+</fsp>
