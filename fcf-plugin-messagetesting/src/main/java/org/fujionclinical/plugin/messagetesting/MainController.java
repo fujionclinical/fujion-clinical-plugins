@@ -28,6 +28,7 @@ package org.fujionclinical.plugin.messagetesting;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.component.*;
+import org.fujion.dialog.DialogUtil;
 import org.fujion.event.ChangeEvent;
 import org.fujion.event.Event;
 import org.fujion.event.IEventListener;
@@ -42,8 +43,6 @@ import org.fujionclinical.api.messaging.Message;
 import org.fujionclinical.api.messaging.ProducerService;
 import org.fujionclinical.shell.elements.ElementPlugin;
 import org.fujionclinical.shell.plugins.PluginController;
-import org.fujionclinical.ui.dialog.DialogUtil;
-import org.fujionclinical.ui.util.FCFUtil;
 
 import java.util.Collection;
 
@@ -64,7 +63,7 @@ public class MainController extends PluginController {
 
         @Override
         public void onMessage(String channel, Message message) {
-            FCFUtil.fireEvent(new Event(channel, root, message), eventListener);
+            org.fujion.event.EventUtil.fireEvent(new Event(channel, root, message), eventListener);
         }
 
     };

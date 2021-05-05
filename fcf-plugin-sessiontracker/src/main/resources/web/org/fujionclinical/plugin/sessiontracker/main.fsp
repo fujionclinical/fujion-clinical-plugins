@@ -4,7 +4,7 @@
 		<label name="lblSessionSummary" style="font-weight:bold"/>
 		<div flex="1"/>
 		<checkbox name="chkAutoRefresh" label="${@msg.fcf.sessiontracker.autorefresh.label}" />
-		<button name="btnRefreshSessionView" label="${@msg.fcf.btn.refresh.label}"/>
+		<button name="btnRefreshSessionView" label="${@msg.org.fujion.dialog.btn.refresh.label}"/>
 	</toolbar>
 	<grid name="grid" flex="1">
 		<columns>

@@ -31,13 +31,13 @@ import org.fujion.annotation.WiredComponent;
 import org.fujion.common.DateUtil;
 import org.fujion.common.LocalizedMessage;
 import org.fujion.component.*;
+import org.fujion.core.CoreUtil;
+import org.fujion.dialog.PopupDialog;
 import org.fujion.event.ChangeEvent;
 import org.fujion.model.ListModel;
 import org.fujionclinical.api.messaging.IPublisherInfo;
 import org.fujionclinical.plugin.chat.SessionService.ISessionUpdate;
 import org.fujionclinical.ui.controller.FrameworkController;
-import org.fujionclinical.ui.dialog.PopupDialog;
-import org.fujionclinical.ui.util.FCFUtil;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -49,7 +49,7 @@ import java.util.Set;
  */
 public class SessionController extends FrameworkController implements ISessionUpdate {
     
-    private static final String DIALOG = FCFUtil.getResourcePath(SessionController.class) + "session.fsp";
+    private static final String DIALOG = CoreUtil.getResourceClassPath(SessionController.class) + "session.fsp";
 
     private static final LocalizedMessage MSG_SESSION_TITLE = new LocalizedMessage("fcf.chat.session.title");
 

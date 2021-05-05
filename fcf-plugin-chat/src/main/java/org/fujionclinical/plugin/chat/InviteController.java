@@ -29,11 +29,11 @@ import org.fujion.ancillary.IResponseCallback;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.component.*;
+import org.fujion.core.CoreUtil;
+import org.fujion.dialog.PopupDialog;
 import org.fujion.model.ListModel;
 import org.fujionclinical.api.messaging.IPublisherInfo;
 import org.fujionclinical.ui.controller.FrameworkController;
-import org.fujionclinical.ui.dialog.PopupDialog;
-import org.fujionclinical.ui.util.FCFUtil;
 
 import java.util.*;
 
@@ -42,7 +42,7 @@ import java.util.*;
  */
 public class InviteController extends FrameworkController {
     
-    private static final String DIALOG = FCFUtil.getResourcePath(InviteController.class) + "invite.fsp";
+    private static final String DIALOG = CoreUtil.getResourceClassPath(InviteController.class) + "invite.fsp";
     
     private static final String ATTR_HIDE = InviteController.class.getName() + ".HIDE_ACTIVE";
     
