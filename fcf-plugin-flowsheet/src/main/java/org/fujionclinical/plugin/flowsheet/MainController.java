@@ -30,6 +30,7 @@ import edu.utah.kmm.model.cool.clinical.finding.Condition;
 import edu.utah.kmm.model.cool.clinical.finding.SimpleObservation;
 import edu.utah.kmm.model.cool.foundation.core.Identifiable;
 import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
+import edu.utah.kmm.model.cool.mediator.datasource.DataSources;
 import edu.utah.kmm.model.cool.mediator.expression.parser.Expression;
 import edu.utah.kmm.model.cool.mediator.expression.parser.ExpressionParser;
 import edu.utah.kmm.model.cool.mediator.query.QueryContext;
@@ -52,11 +53,11 @@ import java.util.stream.Collectors;
 @SuppressWarnings("rawtypes")
 public class MainController extends PluginController {
 
-    private static final String CONDITION_QUERY = "condition/subject={{patient}}&sort:asc=date";
+    private static final String CONDITION_QUERY = "Condition?subject={{patient}}&_sort=date:asc";
 
     private static final Expression<Condition> conditionExpression = ExpressionParser.getInstance().parse(CONDITION_QUERY);
 
-    private static final String OBSERVATION_QUERY = "observation/subject={{patient}}&sort:asc=date";
+    private static final String OBSERVATION_QUERY = "Observation?subject={{patient}}&_sort=date:asc";
 
     private static final Expression<SimpleObservation> observationExpression = ExpressionParser.getInstance().parse(OBSERVATION_QUERY);
 
@@ -68,8 +69,8 @@ public class MainController extends PluginController {
     @WiredComponent
     private Columns columns;
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public void setDataSource(String dataSourceId) {
+        this.dataSource = DataSources.get(dataSourceId);
     }
 
     public void refresh() {
