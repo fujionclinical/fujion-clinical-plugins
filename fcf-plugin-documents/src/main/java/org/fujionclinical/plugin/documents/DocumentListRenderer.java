@@ -25,9 +25,9 @@
  */
 package org.fujionclinical.plugin.documents;
 
-import edu.utah.kmm.model.cool.clinical.finding.Document;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.coolmodel.clinical.finding.Document;
 import org.fujion.component.BaseComponent;
 import org.fujion.component.Cell;
 import org.fujion.component.Grid;

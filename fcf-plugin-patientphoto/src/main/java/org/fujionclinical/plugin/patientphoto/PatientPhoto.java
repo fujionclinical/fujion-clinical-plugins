@@ -25,8 +25,8 @@
  */
 package org.fujionclinical.plugin.patientphoto;
 
-import edu.utah.kmm.model.cool.foundation.entity.Person;
-import edu.utah.kmm.model.cool.util.PersonUtils;
+import org.coolmodel.foundation.entity.Person;
+import org.coolmodel.util.PersonUtils;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.component.BaseComponent;
 import org.fujion.component.Image;

@@ -25,8 +25,8 @@
  */
 package org.fujionclinical.plugin.diagnosticreports;
 
-import edu.utah.kmm.model.cool.clinical.finding.DiagnosticReport;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
+import org.coolmodel.clinical.finding.DiagnosticReport;
+import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
 import java.util.List;

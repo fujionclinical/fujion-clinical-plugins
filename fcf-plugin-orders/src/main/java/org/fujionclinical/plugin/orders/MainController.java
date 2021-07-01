@@ -25,14 +25,14 @@
  */
 package org.fujionclinical.plugin.orders;
 
-import edu.utah.kmm.model.cool.clinical.action.MedicationRequest;
-import edu.utah.kmm.model.cool.clinical.action.ServiceRequest;
-import edu.utah.kmm.model.cool.clinical.action.SimpleMedicationRequest;
-import edu.utah.kmm.model.cool.foundation.core.Identifiable;
-import edu.utah.kmm.model.cool.mediator.dao.DAOQueryService;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
-import edu.utah.kmm.model.cool.mediator.query.QueryContext;
-import edu.utah.kmm.model.cool.mediator.query.QueryContextImpl;
+import org.coolmodel.clinical.action.MedicationRequest;
+import org.coolmodel.clinical.action.ServiceRequest;
+import org.coolmodel.clinical.action.SimpleMedicationRequest;
+import org.coolmodel.foundation.core.Identifiable;
+import org.coolmodel.mediator.dao.DAOQueryService;
+import org.coolmodel.mediator.datasource.DataSource;
+import org.coolmodel.mediator.query.QueryContext;
+import org.coolmodel.mediator.query.QueryContextImpl;
 import org.fujionclinical.sharedforms.controller.AbstractResourceListView;
 
 import java.util.ArrayList;

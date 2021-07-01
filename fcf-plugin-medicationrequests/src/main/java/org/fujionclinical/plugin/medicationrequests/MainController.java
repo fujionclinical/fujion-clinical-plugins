@@ -25,9 +25,9 @@
  */
 package org.fujionclinical.plugin.medicationrequests;
 
-import edu.utah.kmm.model.cool.clinical.action.MedicationRequest;
-import edu.utah.kmm.model.cool.clinical.action.SimpleMedicationRequest;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
+import org.coolmodel.clinical.action.MedicationRequest;
+import org.coolmodel.clinical.action.SimpleMedicationRequest;
+import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
 import java.util.List;

@@ -25,9 +25,9 @@
  */
 package org.fujionclinical.plugin.familyhistory;
 
-import edu.utah.kmm.model.cool.clinical.finding.Condition;
-import edu.utah.kmm.model.cool.clinical.finding.FamilyMemberHistory;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
+import org.coolmodel.clinical.finding.Condition;
+import org.coolmodel.clinical.finding.FamilyMemberHistory;
+import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
 import java.util.List;

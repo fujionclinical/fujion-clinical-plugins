@@ -25,8 +25,8 @@
  */
 package org.fujionclinical.plugin.servicerequests;
 
-import edu.utah.kmm.model.cool.clinical.action.ServiceRequest;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
+import org.coolmodel.clinical.action.ServiceRequest;
+import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
 import java.util.List;

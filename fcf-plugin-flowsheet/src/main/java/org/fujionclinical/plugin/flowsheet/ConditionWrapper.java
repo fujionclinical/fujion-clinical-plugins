@@ -1,6 +1,6 @@
 package org.fujionclinical.plugin.flowsheet;
 
-import edu.utah.kmm.model.cool.clinical.finding.Condition;
+import org.coolmodel.clinical.finding.Condition;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package org.fujionclinical.plugin.flowsheet;
 
-import edu.utah.kmm.model.cool.clinical.finding.SimpleObservation;
+import org.coolmodel.clinical.finding.SimpleObservation;
 
 import java.time.LocalDateTime;
 

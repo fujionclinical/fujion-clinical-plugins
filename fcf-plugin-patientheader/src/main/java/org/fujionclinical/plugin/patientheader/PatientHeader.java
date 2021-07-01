@@ -25,17 +25,17 @@
  */
 package org.fujionclinical.plugin.patientheader;
 
-import edu.utah.kmm.model.cool.core.datatype.Identifier;
-import edu.utah.kmm.model.cool.foundation.datatype.Address;
-import edu.utah.kmm.model.cool.foundation.datatype.ContactPoint;
-import edu.utah.kmm.model.cool.foundation.datatype.PersonName;
-import edu.utah.kmm.model.cool.foundation.entity.Person;
-import edu.utah.kmm.model.cool.mediator.common.Formatters;
-import edu.utah.kmm.model.cool.util.PersonUtils;
-import edu.utah.kmm.terminology.api.model.ConceptReferenceSet;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.coolmodel.core.datatype.Identifier;
+import org.coolmodel.core.terminology.ConceptSet;
+import org.coolmodel.foundation.datatype.Address;
+import org.coolmodel.foundation.datatype.ContactPoint;
+import org.coolmodel.foundation.datatype.PersonName;
+import org.coolmodel.foundation.entity.Person;
+import org.coolmodel.mediator.common.Formatters;
+import org.coolmodel.util.PersonUtils;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.common.DateUtil;
@@ -249,8 +249,8 @@ public class PatientHeader extends PluginController {
 
         header = null;
 
-        for (ConceptReferenceSet language : patient.getLanguage()) {
-            String languageStr = Formatters.formatConceptReferenceSet(language);
+        for (ConceptSet language : patient.getLanguage()) {
+            String languageStr = Formatters.formatConceptSet(language);
 
             if (header == null) {
                 header = addHeader("Communication");

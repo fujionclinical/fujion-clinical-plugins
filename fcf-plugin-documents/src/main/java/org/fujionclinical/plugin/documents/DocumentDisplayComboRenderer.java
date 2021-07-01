@@ -25,7 +25,7 @@
  */
 package org.fujionclinical.plugin.documents;
 
-import edu.utah.kmm.model.cool.clinical.finding.Document;
+import org.coolmodel.clinical.finding.Document;
 import org.fujion.component.Comboitem;
 import org.fujion.model.IComponentRenderer;
 

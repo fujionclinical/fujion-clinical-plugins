@@ -26,15 +26,15 @@
 package org.fujionclinical.plugin.flowsheet;
 
 import edu.utah.kmm.common.dates.DateUtils;
-import edu.utah.kmm.model.cool.clinical.finding.Condition;
-import edu.utah.kmm.model.cool.clinical.finding.SimpleObservation;
-import edu.utah.kmm.model.cool.foundation.core.Identifiable;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSources;
-import edu.utah.kmm.model.cool.mediator.expression.parser.Expression;
-import edu.utah.kmm.model.cool.mediator.expression.parser.ExpressionParser;
-import edu.utah.kmm.model.cool.mediator.query.QueryContext;
-import edu.utah.kmm.model.cool.mediator.query.QueryContextImpl;
+import org.coolmodel.clinical.finding.Condition;
+import org.coolmodel.clinical.finding.SimpleObservation;
+import org.coolmodel.foundation.core.Identifiable;
+import org.coolmodel.mediator.datasource.DataSource;
+import org.coolmodel.mediator.datasource.DataSources;
+import org.coolmodel.mediator.expression.parser.Expression;
+import org.coolmodel.mediator.expression.parser.ExpressionParser;
+import org.coolmodel.mediator.query.QueryContext;
+import org.coolmodel.mediator.query.QueryContextImpl;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.component.*;
 import org.fujionclinical.api.cool.patient.PatientContext;

@@ -1,6 +1,6 @@
 package org.fujionclinical.plugin.flowsheet;
 
-import edu.utah.kmm.model.cool.foundation.core.Identifiable;
+import org.coolmodel.foundation.core.Identifiable;
 
 import java.time.LocalDateTime;
 

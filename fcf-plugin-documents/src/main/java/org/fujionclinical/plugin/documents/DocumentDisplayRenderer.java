@@ -25,8 +25,8 @@
  */
 package org.fujionclinical.plugin.documents;
 
-import edu.utah.kmm.model.cool.clinical.finding.Document;
-import edu.utah.kmm.model.cool.core.datatype.Attachment;
+import org.coolmodel.clinical.finding.Document;
+import org.coolmodel.core.datatype.Attachment;
 import org.fujion.component.*;
 import org.fujion.model.IComponentRenderer;
 import org.fujionclinical.sharedforms.common.FormConstants;

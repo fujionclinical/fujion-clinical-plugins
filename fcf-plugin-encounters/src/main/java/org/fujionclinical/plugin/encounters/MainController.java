@@ -25,8 +25,8 @@
  */
 package org.fujionclinical.plugin.encounters;
 
-import edu.utah.kmm.model.cool.clinical.encounter.Encounter;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
+import org.coolmodel.clinical.encounter.Encounter;
+import org.coolmodel.mediator.datasource.DataSource;
 import org.fujion.component.*;
 import org.fujion.event.DblclickEvent;
 import org.fujionclinical.api.cool.encounter.EncounterContext;

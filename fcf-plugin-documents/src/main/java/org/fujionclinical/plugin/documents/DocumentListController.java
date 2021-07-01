@@ -25,13 +25,13 @@
  */
 package org.fujionclinical.plugin.documents;
 
-import edu.utah.kmm.model.cool.clinical.finding.Document;
-import edu.utah.kmm.model.cool.mediator.dao.DAOQueryService;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSources;
-import edu.utah.kmm.model.cool.mediator.query.QueryContext;
-import edu.utah.kmm.model.cool.mediator.query.filter.AbstractQueryFilter;
-import edu.utah.kmm.model.cool.mediator.query.filter.DateQueryFilter;
-import edu.utah.kmm.terminology.api.model.ConceptReference;
+import org.coolmodel.clinical.finding.Document;
+import org.coolmodel.core.terminology.Concept;
+import org.coolmodel.mediator.dao.DAOQueryService;
+import org.coolmodel.mediator.datasource.DataSources;
+import org.coolmodel.mediator.query.QueryContext;
+import org.coolmodel.mediator.query.filter.AbstractQueryFilter;
+import org.coolmodel.mediator.query.filter.DateQueryFilter;
 import org.fujion.annotation.EventHandler;
 import org.fujion.annotation.WiredComponent;
 import org.fujion.common.StrUtil;
@@ -156,7 +156,7 @@ public class DocumentListController extends AbstractGridController<Document, Doc
 
         if (documents != null) {
             for (Document doc : documents) {
-                types.addAll(doc.getType().getConceptReferences().stream().map(ConceptReference::getCode).collect(Collectors.toList()));
+                types.addAll(doc.getType().getConcepts().stream().map(Concept::getCode).collect(Collectors.toList()));
             }
         }
 

@@ -25,11 +25,11 @@
  */
 package org.fujionclinical.plugin.observations;
 
-import edu.utah.kmm.model.cool.clinical.finding.BloodPressure;
-import edu.utah.kmm.model.cool.clinical.finding.ComposableObservation;
-import edu.utah.kmm.model.cool.clinical.finding.ObservationalFinding;
-import edu.utah.kmm.model.cool.clinical.finding.SimpleObservation;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
+import org.coolmodel.clinical.finding.BloodPressure;
+import org.coolmodel.clinical.finding.ComposableObservation;
+import org.coolmodel.clinical.finding.ObservationalFinding;
+import org.coolmodel.clinical.finding.SimpleObservation;
+import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
 import java.util.List;

@@ -25,10 +25,10 @@
  */
 package org.fujionclinical.plugin.adversereactions;
 
-import edu.utah.kmm.model.cool.clinical.finding.AdverseReaction;
-import edu.utah.kmm.model.cool.clinical.finding.AllergyIntolerance;
-import edu.utah.kmm.model.cool.clinical.finding.Onset;
-import edu.utah.kmm.model.cool.mediator.datasource.DataSource;
+import org.coolmodel.clinical.finding.AdverseReaction;
+import org.coolmodel.clinical.finding.AllergyIntolerance;
+import org.coolmodel.clinical.finding.Onset;
+import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
 import java.util.List;
