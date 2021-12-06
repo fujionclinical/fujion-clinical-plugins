@@ -26,9 +26,9 @@
 package org.fujionclinical.plugin.observations;
 
 import org.coolmodel.clinical.finding.BloodPressure;
-import org.coolmodel.clinical.finding.ComposableObservation;
 import org.coolmodel.clinical.finding.ObservationalFinding;
-import org.coolmodel.clinical.finding.SimpleObservation;
+import org.coolmodel.clinical.finding.Panel;
+import org.coolmodel.clinical.finding.QuantitativeObservation;
 import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
@@ -37,7 +37,7 @@ import java.util.List;
 /**
  * Controller for patient observations display.
  */
-public class MainController extends ResourceListView<ObservationalFinding, SimpleObservation<?>, DataSource> {
+public class MainController extends ResourceListView<ObservationalFinding, QuantitativeObservation, DataSource> {
 
     @Override
     protected void setup() {
@@ -47,7 +47,7 @@ public class MainController extends ResourceListView<ObservationalFinding, Simpl
 
     @Override
     protected void populate(
-            SimpleObservation<?> observation,
+            QuantitativeObservation observation,
             List<Object> columns) {
         columns.add(observation.getCode());
         columns.add(observation.getEffective());
@@ -63,16 +63,15 @@ public class MainController extends ResourceListView<ObservationalFinding, Simpl
 
     private void addObservations(List<? extends ObservationalFinding> src) {
         for (ObservationalFinding observation : src) {
-            if (observation instanceof ComposableObservation) {
-                ComposableObservation<?> obs = (ComposableObservation<?>) observation;
-                model.add(obs);
-                addObservations(obs.getEntries());
+            if (observation instanceof Panel) {
+                Panel<?> obs = (Panel<?>) observation;
+                addObservations(obs.getItems());
             } else if (observation instanceof BloodPressure) {
                 BloodPressure obs = (BloodPressure) observation;
                 model.add(obs.getSystolic());
                 model.add(obs.getDiastolic());
-            } else if (observation instanceof SimpleObservation) {
-                model.add((SimpleObservation<?>) observation);
+            } else if (observation instanceof QuantitativeObservation) {
+                model.add((QuantitativeObservation) observation);
             }
         }
     }

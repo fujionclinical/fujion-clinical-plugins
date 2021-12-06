@@ -61,10 +61,10 @@ public class DocumentListRenderer implements IComponentRenderer<Row, Document> {
         log.trace("item render");
         row.addEventForward(DblclickEvent.TYPE, grid, null);
         addCell(row, "");
-        addCell(row, doc.getRecordedDate());
+        addCell(row, doc.getRecordedOn());
         addCell(row, doc.getDescription());
         addCell(row, doc.hasEncounter() ? doc.getEncounter().getLocation() : null);
-        addCell(row, doc.getRecorder());
+        addCell(row, doc.getRecorded().getBy());
         return row;
     }
     

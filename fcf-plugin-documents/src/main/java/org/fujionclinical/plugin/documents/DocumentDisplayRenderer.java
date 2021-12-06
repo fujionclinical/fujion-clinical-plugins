@@ -26,7 +26,7 @@
 package org.fujionclinical.plugin.documents;
 
 import org.coolmodel.clinical.finding.Document;
-import org.coolmodel.core.datatype.Attachment;
+import org.coolmodel.core.complex.Attachment;
 import org.fujion.component.*;
 import org.fujion.model.IComponentRenderer;
 import org.fujionclinical.sharedforms.common.FormConstants;
@@ -55,7 +55,7 @@ public class DocumentDisplayRenderer implements IComponentRenderer<Row, Document
         cell.addChild(div);
         Div boxHeader = new Div();
         div.addClass("fujion-layout-horizontal");
-        Label header = new Label(doc.getDescription());
+        Label header = new Label(String.join("  ", doc.getDescription()));
         header.addClass(FormConstants.SCLASS_DOCUMENT_TITLE);
         boxHeader.addChild(header);
         div.addChild(boxHeader);

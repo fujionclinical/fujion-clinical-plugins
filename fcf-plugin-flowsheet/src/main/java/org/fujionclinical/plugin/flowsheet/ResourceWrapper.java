@@ -2,7 +2,7 @@ package org.fujionclinical.plugin.flowsheet;
 
 import org.coolmodel.foundation.core.Identifiable;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public abstract class ResourceWrapper<T extends Identifiable> {
 
@@ -15,7 +15,7 @@ public abstract class ResourceWrapper<T extends Identifiable> {
         this.resource = resource;
     }
 
-    protected abstract LocalDateTime getDateTime();
+    protected abstract OffsetDateTime getDateTime();
 
     protected abstract String getFormattedValue();
 

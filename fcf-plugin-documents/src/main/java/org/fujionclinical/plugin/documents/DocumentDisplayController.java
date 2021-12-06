@@ -38,7 +38,7 @@ import org.fujion.event.EventUtil;
 import org.fujion.model.IListModel;
 import org.fujionclinical.sharedforms.controller.AbstractGridController;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
@@ -56,6 +56,7 @@ public class DocumentDisplayController extends AbstractGridController<Document, 
     @WiredComponent
     private Combobox cboHeader;
 
+    @SuppressWarnings("unchecked rawtypes")
     public DocumentDisplayController() {
         super(new InMemoryQueryService<>(), "fcfdocuments", "DOCUMENT", "documentsPrint.css", "patient");
         ((InMemoryQueryService) getService()).setQueryResult(() -> documents);
@@ -152,7 +153,7 @@ public class DocumentDisplayController extends AbstractGridController<Document, 
     }
 
     @Override
-    public LocalDateTime getDateByType(
+    public OffsetDateTime getDateByType(
             Document result,
             DateQueryFilter.DateType dateType) {
         return null;

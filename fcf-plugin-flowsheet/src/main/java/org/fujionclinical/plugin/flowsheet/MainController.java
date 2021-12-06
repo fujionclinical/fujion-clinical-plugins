@@ -40,7 +40,7 @@ import org.fujion.component.*;
 import org.fujionclinical.api.cool.patient.PatientContext;
 import org.fujionclinical.shell.plugins.PluginController;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -101,7 +101,7 @@ public class MainController extends PluginController {
 
     private void createColumns(List<ResourceWrapper>... resourceLists) {
         columns.destroyChildren();
-        Set<LocalDateTime> dates = new TreeSet<>();
+        Set<OffsetDateTime> dates = new TreeSet<>();
 
         for (List<ResourceWrapper> resources : resourceLists) {
             resources.forEach(resource -> dates.add(resource.getDateTime()));
@@ -116,7 +116,8 @@ public class MainController extends PluginController {
         });
     }
 
-    private void createRows(List<ResourceWrapper>... resourceLists) {
+    @SafeVarargs
+    private final void createRows(List<ResourceWrapper>... resourceLists) {
         rows.destroyChildren();
 
         for (List<ResourceWrapper> resources : resourceLists) {
@@ -152,7 +153,7 @@ public class MainController extends PluginController {
         return row;
     }
 
-    private Column findColumn(LocalDateTime date) {
+    private Column findColumn(OffsetDateTime date) {
         return columns.getChildren().stream()
                 .map(Column.class::cast)
                 .filter(column -> date.equals(column.getData()))

@@ -2,7 +2,7 @@ package org.fujionclinical.plugin.flowsheet;
 
 import org.coolmodel.clinical.finding.Condition;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class ConditionWrapper extends ResourceWrapper<Condition> {
 
@@ -11,8 +11,8 @@ public class ConditionWrapper extends ResourceWrapper<Condition> {
     }
 
     @Override
-    protected LocalDateTime getDateTime() {
-        return resource.getRecordedDate();
+    protected OffsetDateTime getDateTime() {
+        return resource.getRecordedOn();
     }
 
     @Override

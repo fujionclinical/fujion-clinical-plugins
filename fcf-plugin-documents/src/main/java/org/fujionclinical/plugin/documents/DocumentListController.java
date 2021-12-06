@@ -26,7 +26,7 @@
 package org.fujionclinical.plugin.documents;
 
 import org.coolmodel.clinical.finding.Document;
-import org.coolmodel.core.terminology.Concept;
+import org.coolmodel.core.terminology.ConceptSet;
 import org.coolmodel.mediator.dao.DAOQueryService;
 import org.coolmodel.mediator.datasource.DataSources;
 import org.coolmodel.mediator.query.QueryContext;
@@ -41,9 +41,8 @@ import org.fujion.event.EventUtil;
 import org.fujion.model.IListModel;
 import org.fujionclinical.sharedforms.controller.AbstractGridController;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Controller for the list-based display of clinical documents.
@@ -58,7 +57,8 @@ public class DocumentListController extends AbstractGridController<Document, Doc
         @Override
         public boolean include(Document document) {
             String filter = getCurrentFilter();
-            return filter == null || (document.hasType() && filter.equals(document.getType().getDisplayText()));
+            return filter == null || (document.hasCategory() && document.getCategory().stream()
+                    .anyMatch(cs -> filter.equals(cs.getDisplayText()) || filter.equals(cs.getText())));
         }
 
         @Override
@@ -141,7 +141,7 @@ public class DocumentListController extends AbstractGridController<Document, Doc
         cboFilter.getChildren(Comboitem.class).forEach(items::add);
         
         items.remove(0);
-        Set<String> types = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+        Set<String> categories = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
         String currentFilter = getCurrentFilter();
 
         for (Comboitem item : items) {
@@ -156,11 +156,13 @@ public class DocumentListController extends AbstractGridController<Document, Doc
 
         if (documents != null) {
             for (Document doc : documents) {
-                types.addAll(doc.getType().getConcepts().stream().map(Concept::getCode).collect(Collectors.toList()));
+                doc.getCategory().stream()
+                        .map(ConceptSet::getConcepts)
+                        .forEach(cpts -> cpts.forEach(cpt -> categories.add(cpt.getCode())));
             }
         }
 
-        addFilters(types, cbiSeparator, currentFilter);
+        addFilters(categories, cbiSeparator, currentFilter);
 
         if (currentFilter != null && cboFilter.getSelectedIndex() < 1) {
             Comboitem item = (Comboitem) cboFilter.findChildByLabel(currentFilter);
@@ -307,10 +309,10 @@ public class DocumentListController extends AbstractGridController<Document, Doc
     }
 
     @Override
-    public LocalDateTime getDateByType(
+    public OffsetDateTime getDateByType(
             Document result,
             DateQueryFilter.DateType dateMode) {
-        return result.getRecordedDate();
+        return result.getRecordedOn();
     }
 
 }

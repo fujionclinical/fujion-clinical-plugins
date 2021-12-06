@@ -41,7 +41,7 @@ public class DocumentDisplayComboRenderer implements IComponentRenderer<Comboite
      */
     @Override
     public Comboitem render(Document doc) {
-        Comboitem item = new Comboitem(doc.getDescription());
+        Comboitem item = new Comboitem(String.join("  ", doc.getDescription()));
         item.setData(doc);
         return item;
     }

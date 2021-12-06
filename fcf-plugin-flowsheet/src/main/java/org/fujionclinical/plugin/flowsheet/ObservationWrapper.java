@@ -2,7 +2,7 @@ package org.fujionclinical.plugin.flowsheet;
 
 import org.coolmodel.clinical.finding.SimpleObservation;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class ObservationWrapper extends ResourceWrapper<SimpleObservation> {
 
@@ -11,8 +11,8 @@ public class ObservationWrapper extends ResourceWrapper<SimpleObservation> {
     }
 
     @Override
-    protected LocalDateTime getDateTime() {
-        return (LocalDateTime) resource.getEffective().getValue();
+    protected OffsetDateTime getDateTime() {
+        return (OffsetDateTime) resource.getEffective().getValue();
     }
 
     @Override
