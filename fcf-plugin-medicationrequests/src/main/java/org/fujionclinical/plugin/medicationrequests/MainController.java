@@ -48,7 +48,7 @@ public class MainController extends ResourceListView<MedicationRequest, Medicati
             MedicationRequest medicationRequest,
             List<Object> columns) {
         columns.add(medicationRequest.getMedication().getCode().getDisplayText());
-        columns.add(medicationRequest.getDateWritten());
+        columns.add(medicationRequest.getAuthoredOn());
         columns.add(medicationRequest.getStatus());
         String sig = null;
 

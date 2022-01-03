@@ -82,7 +82,7 @@ public class MainController extends AbstractResourceListView<Identifiable, Ident
             MedicationRequest medicationRequest,
             List<Object> columns) {
         columns.add(medicationRequest.getMedication().getCode().getDisplayText());
-        columns.add(medicationRequest.getDateWritten());
+        columns.add(medicationRequest.getAuthoredOn());
         columns.add(medicationRequest.getStatus());
         String sig = null;
 
