@@ -12,7 +12,7 @@ public class ObservationWrapper extends ResourceWrapper<SimpleObservation> {
 
     @Override
     protected OffsetDateTime getDateTime() {
-        return (OffsetDateTime) resource.getEffective().getValue();
+        return (OffsetDateTime) resource.getEffectiveDateTime();
     }
 
     @Override

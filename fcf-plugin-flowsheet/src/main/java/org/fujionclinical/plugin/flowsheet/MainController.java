@@ -26,7 +26,7 @@
 package org.fujionclinical.plugin.flowsheet;
 
 import edu.utah.kmm.common.dates.DateUtils;
-import org.coolmodel.clinical.finding.Condition;
+import org.coolmodel.clinical.finding.ProblemListEntry;
 import org.coolmodel.clinical.finding.SimpleObservation;
 import org.coolmodel.foundation.core.Identifiable;
 import org.coolmodel.mediator.datasource.DataSource;
@@ -53,9 +53,9 @@ import java.util.stream.Collectors;
 @SuppressWarnings("rawtypes")
 public class MainController extends PluginController {
 
-    private static final String CONDITION_QUERY = "Condition?subject={{patient}}&_sort=date:asc";
+    private static final String CONDITION_QUERY = "ProblemListEntry?subject={{patient}}&_sort=date:asc";
 
-    private static final Expression<Condition> conditionExpression = ExpressionParser.getInstance().parse(CONDITION_QUERY);
+    private static final Expression<ProblemListEntry> conditionExpression = ExpressionParser.getInstance().parse(CONDITION_QUERY);
 
     private static final String OBSERVATION_QUERY = "Observation?subject={{patient}}&_sort=date:asc";
 
@@ -76,7 +76,7 @@ public class MainController extends PluginController {
     public void refresh() {
         QueryContext queryContext = new QueryContextImpl();
         queryContext.setParam("patient", PatientContext.getActivePatient());
-        List<ResourceWrapper> conditions = fetch(Condition.class, conditionExpression, queryContext, ConditionWrapper::new);
+        List<ResourceWrapper> conditions = fetch(ProblemListEntry.class, conditionExpression, queryContext, ConditionWrapper::new);
         List<ResourceWrapper> observations = fetch(SimpleObservation.class, observationExpression, queryContext, ObservationWrapper::new);
         rows.destroyChildren();
         columns.destroyChildren();

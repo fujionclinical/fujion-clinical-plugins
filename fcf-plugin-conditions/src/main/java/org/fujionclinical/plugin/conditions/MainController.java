@@ -25,7 +25,8 @@
  */
 package org.fujionclinical.plugin.conditions;
 
-import org.coolmodel.clinical.finding.Condition;
+import org.coolmodel.clinical.finding.AssertionalFinding;
+import org.coolmodel.clinical.finding.AssertionalFindingEntry;
 import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
@@ -34,24 +35,25 @@ import java.util.List;
 /**
  * Controller for patient conditions display.
  */
-public class MainController extends ResourceListView<Condition, Condition, DataSource> {
-    
+public class MainController extends ResourceListView<AssertionalFindingEntry, AssertionalFindingEntry, DataSource> {
+
     @Override
     protected void setup() {
-        setup(Condition.class, "Conditions", "Condition Detail", "subject={{patient}}", 1, "Condition", "Onset", "Status",
+        setup(AssertionalFindingEntry.class, "Conditions", "Condition Detail", "subject={{patient}}", 1, "Condition", "Onset", "Status",
                 "Notes");
     }
-    
+
     @Override
-    protected void populate(Condition condition, List<Object> columns) {
-        columns.add(condition.getCode().getDisplayText());
-        columns.add(condition.getOnset().getValue());
-        columns.add(condition.getClinicalStatus());
-        columns.add(condition.getNotes());
+    protected void populate(AssertionalFindingEntry condition, List<Object> columns) {
+        AssertionalFinding assertion = condition.getAssertion();
+        addColumn(() -> assertion.getCode().getDisplayText(), columns);
+        addColumn(() -> assertion.getAsserted().getOn(), columns);
+        addColumn(assertion::getClinicalStatus, columns);
+        addColumn(assertion::getNotes, columns);
     }
     
     @Override
-    protected void initModel(List<Condition> entries) {
+    protected void initModel(List<AssertionalFindingEntry> entries) {
         model.addAll(entries);
     }
     

@@ -47,7 +47,7 @@ public class MainController extends ResourceListView<ServiceRequest, ServiceRequ
             ServiceRequest procedure,
             List<Object> columns) {
         columns.add(procedure.getCode());
-        columns.add(procedure.getOrderedOn());
+        columns.add(procedure.getRequestedOn());
         columns.add(procedure.getStatus());
         columns.add(procedure.getNotes());
     }

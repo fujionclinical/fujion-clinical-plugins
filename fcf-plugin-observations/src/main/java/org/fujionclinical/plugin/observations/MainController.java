@@ -50,7 +50,7 @@ public class MainController extends ResourceListView<ObservationalFinding, Quant
             QuantitativeObservation observation,
             List<Object> columns) {
         columns.add(observation.getCode());
-        columns.add(observation.getEffective());
+        columns.add(observation.getEffectiveDateTime());
         columns.add(observation.getStatus());
         columns.add(observation.getValue());
         columns.add(observation.getReferenceRange());

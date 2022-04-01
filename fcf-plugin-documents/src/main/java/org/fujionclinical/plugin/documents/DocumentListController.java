@@ -25,8 +25,8 @@
  */
 package org.fujionclinical.plugin.documents;
 
+import org.clinicalontology.terminology.api.ConceptSet;
 import org.coolmodel.clinical.finding.Document;
-import org.coolmodel.core.terminology.ConceptSet;
 import org.coolmodel.mediator.dao.DAOQueryService;
 import org.coolmodel.mediator.datasource.DataSources;
 import org.coolmodel.mediator.query.QueryContext;

@@ -1,13 +1,13 @@
 package org.fujionclinical.plugin.flowsheet;
 
-import org.coolmodel.clinical.finding.Condition;
+import org.coolmodel.clinical.finding.ProblemListEntry;
 
 import java.time.OffsetDateTime;
 
-public class ConditionWrapper extends ResourceWrapper<Condition> {
+public class ConditionWrapper extends ResourceWrapper<ProblemListEntry> {
 
-    public ConditionWrapper(Condition resource) {
-        super(Condition.class,resource);
+    public ConditionWrapper(ProblemListEntry resource) {
+        super(ProblemListEntry.class,resource);
     }
 
     @Override
@@ -17,7 +17,7 @@ public class ConditionWrapper extends ResourceWrapper<Condition> {
 
     @Override
     protected String getFormattedValue() {
-        return resource.getCode().getDisplayText();
+        return resource.getAssertion().getCode().getDisplayText();
     }
 
     @Override

@@ -73,7 +73,7 @@ public class MainController extends AbstractResourceListView<Identifiable, Ident
             ServiceRequest request,
             List<Object> columns) {
         columns.add("Procedure");
-        columns.add(request.getOrderedOn());
+        columns.add(request.getRequestedOn());
         columns.add(request.getCode());
         columns.add(request.getNotes());
     }
