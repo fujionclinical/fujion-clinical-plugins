@@ -25,7 +25,7 @@
  */
 package org.fujionclinical.plugin.medicationrequests;
 
-import org.coolmodel.clinical.action.MedicationRequest;
+import org.coolmodel.clinical.action.MedicationOrder;
 import org.coolmodel.clinical.action.SimpleMedicationRequest;
 import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
@@ -35,20 +35,20 @@ import java.util.List;
 /**
  * Controller for patient medication requests display.
  */
-public class MainController extends ResourceListView<MedicationRequest, MedicationRequest, DataSource> {
+public class MainController extends ResourceListView<MedicationOrder, MedicationOrder, DataSource> {
 
     @Override
     protected void setup() {
-        setup(MedicationRequest.class, "Medication Orders", "Order Detail", "subject={{patient}}", 1, "Medication",
+        setup(MedicationOrder.class, "Medication Orders", "Order Detail", "subject={{patient}}", 1, "Medication",
                 "Date", "Status", "Sig");
     }
 
     @Override
     protected void populate(
-            MedicationRequest medicationRequest,
+            MedicationOrder medicationRequest,
             List<Object> columns) {
-        columns.add(medicationRequest.getMedication().getCode().getDisplayText());
-        columns.add(medicationRequest.getAuthoredOn());
+        columns.add(medicationRequest.getOrderable().getOrderable().getDisplayText());
+        columns.add(medicationRequest.getRequestedOn());
         columns.add(medicationRequest.getStatus());
         String sig = null;
 
@@ -61,7 +61,7 @@ public class MainController extends ResourceListView<MedicationRequest, Medicati
     }
 
     @Override
-    protected void initModel(List<MedicationRequest> entries) {
+    protected void initModel(List<MedicationOrder> entries) {
         model.addAll(entries);
     }
 

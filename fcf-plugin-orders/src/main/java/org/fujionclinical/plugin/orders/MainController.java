@@ -25,9 +25,7 @@
  */
 package org.fujionclinical.plugin.orders;
 
-import org.coolmodel.clinical.action.MedicationRequest;
-import org.coolmodel.clinical.action.ServiceRequest;
-import org.coolmodel.clinical.action.SimpleMedicationRequest;
+import org.coolmodel.clinical.action.*;
 import org.coolmodel.foundation.core.Identifiable;
 import org.coolmodel.mediator.dao.DAOQueryService;
 import org.coolmodel.mediator.datasource.DataSource;
@@ -47,14 +45,14 @@ public class MainController extends AbstractResourceListView<Identifiable, Ident
 
     private final QueryContext queryContext = new QueryContextImpl();
 
-    private DAOQueryService<ServiceRequest> queryServiceRequest;
+    private DAOQueryService<ServiceOrder> queryServiceOrder;
 
-    private DAOQueryService<MedicationRequest> queryMedicationRequest;
+    private DAOQueryService<MedicationOrder> queryMedicationOrder;
 
     @Override
     protected void setup() {
-        queryServiceRequest = new DAOQueryService<>(getDataSource(), ServiceRequest.class, QUERY);
-        queryMedicationRequest = new DAOQueryService<>(getDataSource(), MedicationRequest.class, QUERY);
+        queryServiceOrder = new DAOQueryService<>(getDataSource(), ServiceOrder.class, QUERY);
+        queryMedicationOrder = new DAOQueryService<>(getDataSource(), MedicationOrder.class, QUERY);
         setup(Identifiable.class, "Orders", "Order Detail", "", 1, "Type", "Date", "Order", "Notes");
     }
 
@@ -63,31 +61,31 @@ public class MainController extends AbstractResourceListView<Identifiable, Ident
             Identifiable item,
             List<Object> columns) {
         if (item instanceof ServiceRequest) {
-            render((ServiceRequest) item, columns);
+            render((ServiceOrder) item, columns);
         } else if (item instanceof MedicationRequest) {
-            render((MedicationRequest) item, columns);
+            render((MedicationOrder) item, columns);
         }
     }
 
     private void render(
-            ServiceRequest request,
+            ServiceOrder serviceOrder,
             List<Object> columns) {
         columns.add("Procedure");
-        columns.add(request.getRequestedOn());
-        columns.add(request.getCode());
-        columns.add(request.getNotes());
+        columns.add(serviceOrder.getRequestedOn());
+        columns.add(serviceOrder.getOrderable().getCode());
+        columns.add(serviceOrder.getNotes());
     }
 
     private void render(
-            MedicationRequest medicationRequest,
+            MedicationOrder medicationOrder,
             List<Object> columns) {
-        columns.add(medicationRequest.getMedication().getCode().getDisplayText());
-        columns.add(medicationRequest.getAuthoredOn());
-        columns.add(medicationRequest.getStatus());
+        columns.add(medicationOrder.getOrderable().getOrderable().getDisplayText());
+        columns.add(medicationOrder.getRequestedOn());
+        columns.add(medicationOrder.getStatus());
         String sig = null;
 
-        if (medicationRequest instanceof SimpleMedicationRequest) {
-            SimpleMedicationRequest request = (SimpleMedicationRequest) medicationRequest;
+        if (medicationOrder instanceof SimpleMedicationOrder) {
+            SimpleMedicationRequest request = ((SimpleMedicationOrder) medicationOrder).getOrderable();
             sig = request.hasDosageInstruction() ? request.getDosageInstruction().getText() : null;
         }
 
@@ -107,8 +105,8 @@ public class MainController extends AbstractResourceListView<Identifiable, Ident
     private List<Identifiable> fetchData() {
         List<Identifiable> results = new ArrayList<>();
         queryContext.setParam("patient", getPatient() == null ? null : getPatient().getDefaultId().getId());
-        results.addAll(queryServiceRequest.fetch(queryContext).get());
-        results.addAll(queryMedicationRequest.fetch(queryContext).get());
+        results.addAll(queryServiceOrder.fetch(queryContext).get());
+        results.addAll(queryMedicationOrder.fetch(queryContext).get());
         return results;
     }
 

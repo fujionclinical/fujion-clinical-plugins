@@ -25,7 +25,7 @@
  */
 package org.fujionclinical.plugin.servicerequests;
 
-import org.coolmodel.clinical.action.ServiceRequest;
+import org.coolmodel.clinical.action.ServiceOrder;
 import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
 
@@ -34,26 +34,26 @@ import java.util.List;
 /**
  * Controller for patient family history display.
  */
-public class MainController extends ResourceListView<ServiceRequest, ServiceRequest, DataSource> {
+public class MainController extends ResourceListView<ServiceOrder, ServiceOrder, DataSource> {
 
     @Override
     protected void setup() {
-        setup(ServiceRequest.class, "Procedures", "Procedure Detail", "subject={{patient}}", 1, "Procedure", "Date", "Status",
+        setup(ServiceOrder.class, "Procedures", "Procedure Detail", "subject={{patient}}", 1, "Procedure", "Date", "Status",
                 "Notes");
     }
 
     @Override
     protected void populate(
-            ServiceRequest procedure,
+            ServiceOrder serviceOrder,
             List<Object> columns) {
-        columns.add(procedure.getCode());
-        columns.add(procedure.getRequestedOn());
-        columns.add(procedure.getStatus());
-        columns.add(procedure.getNotes());
+        columns.add(serviceOrder.getOrderable().getOrderable());
+        columns.add(serviceOrder.getRequestedOn());
+        columns.add(serviceOrder.getStatus());
+        columns.add(serviceOrder.getNotes());
     }
 
     @Override
-    protected void initModel(List<ServiceRequest> entries) {
+    protected void initModel(List<ServiceOrder> entries) {
         model.addAll(entries);
     }
 

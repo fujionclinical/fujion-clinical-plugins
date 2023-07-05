@@ -28,7 +28,7 @@ package org.fujionclinical.plugin.patientheader;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.clinicalontology.terminology.api.ConceptSet;
+import org.clinicalontology.terminology.api.model.ConceptSet;
 import org.coolmodel.core.complex.Identifier;
 import org.coolmodel.foundation.common.Address;
 import org.coolmodel.foundation.common.ContactPoint;

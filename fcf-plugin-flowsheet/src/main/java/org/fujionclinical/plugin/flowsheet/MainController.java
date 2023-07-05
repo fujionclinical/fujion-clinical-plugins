@@ -88,7 +88,7 @@ public class MainController extends PluginController {
             Expression<T> expression,
             QueryContext queryContext,
             Function<T, ResourceWrapper<T>> factory) {
-        return dataSource.getModelDAO(type)
+        return dataSource.getDAO(type)
                 .search(expression, queryContext).getAsList().stream()
                 .map(factory)
                 .collect(Collectors.toList());

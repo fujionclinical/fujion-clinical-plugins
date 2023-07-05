@@ -25,7 +25,7 @@
  */
 package org.fujionclinical.plugin.familyhistory;
 
-import org.coolmodel.clinical.finding.AssertionalFinding;
+import org.coolmodel.clinical.finding.AssertionOfPresence;
 import org.coolmodel.clinical.finding.FamilyMemberHistory;
 import org.coolmodel.mediator.datasource.DataSource;
 import org.fujionclinical.sharedforms.controller.ResourceListView;
@@ -48,7 +48,7 @@ public class MainController extends ResourceListView<FamilyMemberHistory, Family
             FamilyMemberHistory relation,
             List<Object> columns) {
         columns.add(relation.getRelationship());
-        AssertionalFinding condition = relation.getCondition();
+        AssertionOfPresence condition = relation.getCondition();
         columns.add(condition.getCode());
         columns.add(condition.getClinicalStatus());
         columns.add(condition.getNotes());
