@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.fujionclinical.api.messaging.IPublisherInfo;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -36,7 +37,8 @@ import java.util.Date;
  * A single chat message.
  */
 public class ChatMessage implements Serializable {
-    
+
+    @Serial
     private static final long serialVersionUID = 1L;
     
     public final IPublisherInfo sender;
